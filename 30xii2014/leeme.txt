@@ -1,0 +1,6 @@
+¡¡IMPORTANTE!!
+
+Comprobar el modificar Valoración del jurado profesional.
+Parece que no valida que se ingrese una
+nota nueva, y en ese caso se carga la
+anterior
