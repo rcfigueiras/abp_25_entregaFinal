@@ -22,7 +22,10 @@ $db_model=new db_model();
     </div>
 	
     <form action="<?PHP echo raiz;?>/controllers/administrador_controlador.php" method="get"> 		
-		
+	
+	<div class="col-md-3">
+		  <div class="alert alert-info">Jurados Profesionales con Asignaci&oacute;n</div>	
+
 		<?PHP
 		/*Se muestran a continuación los jurados que tienen ya algn pincho asignado*/
 		foreach  ($_SESSION['listaJur'] as $valor){
@@ -44,9 +47,14 @@ $db_model=new db_model();
 		}		
 		
 		?>	
+		
+		<div class="col-md-3"></div>
+		
 		<div class="btn-group">
-			<button TYPE="submit" name="accion" VALUE="VolverInicio" class="btn btn-default">Volver</button>
-		</div>  		
+			<button TYPE="submit" name="accion" VALUE="VolverGesAsigna" class="btn btn-primary">Volver</button>
+		</div>  	
+	      </div>  	
+	      
 	<form/> 
 	
   

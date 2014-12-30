@@ -36,7 +36,7 @@ require_once(__DIR__."/../var_globales.php");
 		
 		<div id="bases">
 			<?PHP echo $_SESSION['nombre_concurso']; ?>
-			<div class="basesBoton"><a class="btn btn-default" href="<?PHP echo $_SESSION['bases']; ?>" role="button">Bases</a></div>
+			<div class="basesBoton"><a class="btn btn-default" target="_blank" href="<?PHP echo $_SESSION['bases']; ?>" role="button">Bases</a></div>
 		</div>
 		
 		
@@ -45,7 +45,7 @@ require_once(__DIR__."/../var_globales.php");
 			
 	<?PHP if(isset($_SESSION['login']) && ($_SESSION['login']!='')){ 
 	?>
-				<div class="basesBoton"><a class="btn btn-default" href="<?PHP echo raiz;?>views/IU_inicio_<?PHP echo $_SESSION['tipoUsu']; ?>.php" role="button">
+				<div class="basesBoton"><a class="btn btn-default" href="<?PHP echo raiz;?>views/IU_inicio_<?PHP echo $_SESSION['tipoUsu']; ?>.php"  role="button">
 				<?PHP echo "Hola, ".$_SESSION['login']; ?></a></div>
 
 				<form action="<?PHP echo raiz;?>controllers/logout_controlador.php" method="get" role="form">			

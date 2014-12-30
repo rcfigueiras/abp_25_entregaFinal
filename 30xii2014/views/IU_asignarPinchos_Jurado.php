@@ -19,31 +19,45 @@ $db_model=new db_model();
 	<div class="form-group">
 		<?PHP include("IU_cabecera.php"); ?>
 	</div>
+
 	
-    <form action="<?PHP echo raiz;?>/controllers/administrador_controlador.php" method="get"> 		
+	<form action="<?PHP echo raiz;?>/controllers/administrador_controlador.php" method="get"> 		
 		
-		<?PHP
-		/*Se muestran a continuación los jurados que tienen ya algn pincho asignado*/
-		foreach  ($_SESSION['listaJur_con_Pin'] as $valor){
-		?>
-		<div class="form-group">
+		<div class="col-md-3">
 		
-		  <button class="btn btn-primary disabled" type="button" > 
-		      <?PHP echo $valor['nombre_jurPro']?>
-		      <span class="badge">
-			<?PHP echo $valor['numPin'];?>
-		      </span>
-		 </button>
-		 
-		<button TYPE="submit" NAME="asignaJurado" VALUE="<?PHP echo $valor['nombre_jurPro']?>" class="btn btn-default">Seleccionar</button>
+		  <div class="alert alert-info">Listado de Jurados Profesionales</div>	
+
+		  <?PHP
+		  /*Se muestran a continuación los jurados que tienen ya algn pincho asignado*/
+		  foreach  ($_SESSION['listaJur_con_Pin'] as $valor){
+		  
+		  ?>
+		  
+		  <div class="form-group">
+		  
+		    <button class="btn btn-primary disabled" type="button" > 
+			<?PHP echo $valor['nombre_jurPro']?>
+			<span class="badge">
+			  <?PHP echo $valor['numPin'];?>
+			</span>
+		  </button>
+		  
+		  <button TYPE="submit" NAME="asignaJurado" VALUE="<?PHP echo $valor['nombre_jurPro']?>" class="btn btn-default">Seleccionar</button>
+		  
+		  </div>
+		  <?PHP				
+		  }		
+		  ?>	
+		  
+		  <div class="col-md-3"></div>
+
+		  <div class="btn-group">
+		  
+			  <button TYPE="submit" name="accion" VALUE="VolverGesAsigna" class="btn btn-primary">Volver</button>
+			  
+		  </div>  
 		
 		</div>
-		<?PHP				
-		}		
-		?>	
-		<div class="btn-group">
-			<button TYPE="submit" name="accion" VALUE="VolverInicio" class="btn btn-default">Volver</button>
-		</div>  		
 	<form/> 
 	
   

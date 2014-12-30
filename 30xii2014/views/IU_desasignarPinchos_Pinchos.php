@@ -22,12 +22,12 @@ $db_model=new db_model();
 		<?PHP include("IU_cabecera.php"); ?>
 	</div>
 	
-	<div class="row"> </div>
+	<div class="col-md-3">
 	<!-- Información del jurado profesinal al que se asignan los pinchos y
 	número de pinchos asignados actualizado -->
 
 	  <div class="panel panel-default">
-	  <div class="panel-heading"> <?PHP echo $_SESSION['nombreJurado'] ?></div>
+	  <div class="panel-heading">Pinchos de "<?PHP echo $_SESSION['nombreJurado'] ?>"</div>
 	</div>	
 	<!-- Si un pincho se ha desvinculado de un Jurado profesional se muestra -->
 
@@ -63,18 +63,24 @@ $db_model=new db_model();
 		foreach  ($_SESSION['listaPin'] as $valor){
 		?>
 		<div class="form-group">
+		<div class="col-xs-8">
 		  <button class="btn btn-primary disabled" type="button" > 
 		    <?PHP echo $valor['nombre_pincho']?>		    
 		 </button>
+		 </div>
 			<button TYPE="submit" NAME="desasignaPincho" VALUE="<?PHP echo $valor['nombre_pincho']?>" class="btn btn-default">Desvincular</button>
 		</div>
 		<?PHP				
 		}
 		}
 		?>	
+		
+		<div class="col-md-3"></div>
+
 		<div class="btn-group">
-			<button TYPE="submit" name="accion" VALUE="VolverDesasigna_Jurado" class="btn btn-default">Volver</button>
+			<button TYPE="submit" name="accion" VALUE="VolverDesasigna_Jurado" class="btn btn-primary">Volver</button>
 		</div>  		
+	</div>
 	<form/> 
 	
   

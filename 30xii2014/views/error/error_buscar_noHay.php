@@ -16,18 +16,24 @@ include(__DIR__."/../../var_globales.php");
 	<div class="form-group">
 		<?PHP include(__DIR__."/../IU_cabecera.php"); ?>
 	</div> 
+		
+	<div class="col-md-4"></div><!-- Desplazamiento hacia la derecha del cuerpo de la página -->
 	
-	<div class="row">
-	</div>
+	<div class="col-md-5"><!-- Ancho del cuerpo de la página -->
+
+	
 	<div class="alert alert-info">No se encuentra ningun pincho con esos criterios de b&uacutesqueda</div>	
 
 	<form action="<?PHP echo raiz;?>controllers/buscar_controlador.php" method="get">
+		
+		<div class="col-md-4"></div><!-- Desplazamiento hacia la derecha del cuerpo de la página -->
+
 		<div class="btn-group">
-			<button TYPE="submit" name="accion" VALUE="volver" class="btn btn-default">Volver</button>			
+			<button TYPE="submit" name="accion" VALUE="volver" class="btn btn-primary">Volver</button>			
 		</div>					
 	<form/>   
       
-   
+	</div>
 </body>
 
 </html>

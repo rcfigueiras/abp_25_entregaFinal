@@ -22,7 +22,9 @@ $db_model=new db_model();
 		<?PHP include("IU_cabecera.php"); ?>
 	</div>
 	
-	<div class="row"> </div>
+	
+	<div class="col-md-4">
+
 	<!-- Información del jurado profesinal al que se asignan los pinchos y
 	número de pinchos asignados actualizado -->
 
@@ -84,23 +86,31 @@ $db_model=new db_model();
 		foreach  ($_SESSION['listaPin'] as $valor){
 		?>
 		<div class="form-group">
+		<div class="col-xs-9">
 		  <button class="btn btn-primary disabled" type="button" > 
 		    <?PHP echo $valor['nombre_pincho']?>
 		    <span class="badge">
 		      <?PHP echo $valor['numJP'];?>
 		    </span>
 		 </button>
+		 </div>
 			<button TYPE="submit" NAME="asignaPincho" VALUE="<?PHP echo $valor['nombre_pincho']?>" class="btn btn-default"
-			<?PHP if ($_SESSION['cupo_completo'] == 1 ){ ?> disabled="disabled" <?PHP } ?>>Vincular</button>
-		</div>
+			<?PHP if ($_SESSION['cupo_completo'] == 1 ){ ?> disabled="disabled" <?PHP } ?>>Vincular
+			</button>
+			</div>
 		<?PHP	
 		}	
 		}		
 		?>	
+		
+		<div class="col-md-3"></div>
+
 		<div class="btn-group">
-			<button TYPE="submit" name="accion" VALUE="VolverAsigna_Jurado" class="btn btn-default">Volver</button>
+			<button TYPE="submit" name="accion" VALUE="VolverAsigna_Jurado" class="btn btn-primary">Volver</button>
 		</div>  		
 	<form/> 
+	
+	</div>
 	
   
 </body>

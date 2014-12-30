@@ -13,79 +13,88 @@ include(__DIR__."/../../var_globales.php");
 
 <body>
 	
-	<div class="row"></div>
-	<div class="alert alert-info">Informaci&oacute;n del pincho seleccionado</div>	
-
 	<!-- Cabecera -->
 	<div class="form-group">
 		<?PHP include(__DIR__."/../IU_cabecera.php"); ?>
 	</div>	
 	
+	<div class="col-md-3"></div><!-- Desplazamiento hacia la derecha del cuerpo de la página -->
+	
+	<div class="col-md-5"><!-- Ancho del cuerpo de la página -->
+	
+
 	<form action="<?PHP echo raiz;?>controllers/buscar_controlador.php" method="get">
 	<?PHP
 	
 		foreach ($_SESSION['buscar'] as $valor){
 		?>
 		
+	      <div class="panel panel-default">
+	      <div class="panel-heading">
+		<h2 class="panel-title">Informaci&oacute;n ampliada</h2>
+	      </div>
+	      
+	      <div class="panel-body">
+	      
 		<div class="form-group">
-			<label for="name">Nombre del pincho: </label>
-			<input type="text" class="form-control" value="<?PHP echo $valor['nombre_pincho']?>" readonly>
+		  <img src="<?PHP echo $valor['foto']?>" alt="No hay imagen disponible" class="img-thumbnail" width='400'>
 		</div>
+
 		<div class="form-group">
-			<label for="name">Foto del pincho: </label>
-			<div class="form-group">
-				<img src="<?PHP echo $valor['foto']?>" alt="No hay imagen disponible" class="img-thumbnail" width='250'>
-			</div>		
+		  <label class="label label-info">Nombre</label>
+		  <h4><?PHP echo $valor['nombre_pincho']?></h4>
+			
 		</div>
+
 		<div class="form-group">
-			<label for="name">Tipo de pincho: </label>
-			<input type="text" class="form-control" value="<?PHP echo $valor['tipo']?>" readonly>
-		</div>
-		
-		<div class="form-group">
-			<label for="name">Descripci&oacute;n del pincho: </label>
-			<input type="text" class="form-control" value="<?PHP echo $valor['descripcion']?>" readonly>
-		</div>
-		
-		<div class="form-group">
-			<label for="name">Precio del pincho: </label>
-			<input type="text" class="form-control" value="<?PHP echo $valor['precio']?>" readonly>
-		</div>
-		
-		
-		
-		<div class="form-group">
-			<label for="name">Horario del pincho: </label>
-			<input type="text" class="form-control" value="<?PHP echo $valor['horario']?>" readonly>
+		  <label class="label label-info">Tipo</label>
+		  <h4><?PHP echo $valor['tipo']?></h4>
 		</div>
 		
 		<div class="form-group">
-			<label for="name">Establecimiento que lo ofrece: </label>
-			<input type="text" class="form-control" value="<?PHP echo $valor['nombre_estab']?>" readonly>
+		  <label class="label label-info">Descripci&oacute;n</label>
+		  <h4><?PHP echo $valor['descripcion']?></h4>
 		</div>
 		
 		<div class="form-group">
-			<label for="name">Direcci&oacute;n: </label>
-			<input type="text" class="form-control" value="<?PHP echo $valor['direccion']?>" readonly>
+		  <label class="label label-info">Precio</label>
+		  <h4><?PHP echo $valor['precio']?><span class="glyphicon glyphicon-euro" aria-hidden="true"></span></h4>
+		</div>
+		
+		<div class="form-group">
+		  <label class="label label-info">Horario</label>
+		  <h4><?PHP echo $valor['horario']?></h4>
+		</div>
+		
+		<div >
+		  <label class="label label-info">Establecimiento</label>
+		  <h4><?PHP echo $valor['nombre_estab']?></h4>
+		</div>
+		
+		<div class="form-group">
+		  <label class="label label-info">Direcci&oacute;n</label>
+		  <h4><?PHP echo $valor['direccion']?></h4>
 		</div>
 		
 		
 		<div class="btn-group">
-			<button TYPE="submit" name="accion" VALUE="volver2" class="btn btn-default">Volver</button>
+			<button TYPE="submit" name="accion" VALUE="volver2" class="btn btn-primary">Volver</button>
 			
-		</div>	
+		</div>		      
+		
+		</div>
 		
 		<?PHP				
 		}		
 		?>						
-						
+		
+		</div>
+		
 	<form/> 
 	
 	
 	
-	
-	
-	
+
       
    
 </body>

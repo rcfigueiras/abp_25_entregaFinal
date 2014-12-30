@@ -36,7 +36,7 @@ if (isset($_REQUEST['login'])) {
            <?PHP if(!($_SESSION['tiene_info'])) { ?>
 		
 		
-			<<button TYPE="submit" name="accion" VALUE="RellenarInfoSistema" class="btn btn-block">Rellenar informaci&oacuten del sistema</button>
+			<button TYPE="submit" name="accion" VALUE="RellenarInfoSistema" class="btn btn-block">Rellenar informaci&oacuten del sistema</button>
 				
 		<?PHP }else{ ?>
 		
@@ -47,11 +47,14 @@ if (isset($_REQUEST['login'])) {
 			
 			<button TYPE="submit" name="accion" VALUE="ValidarPinchos" class="btn btn-block">Validar Pinchos</button>
 			
-			<button TYPE="submit" name="accion" VALUE="ListarAsignaciones" class="btn btn-block">Listar Asignaciones</button>
+			<button TYPE="submit" name="accion" VALUE="EliminarPinchos" class="btn btn-block">Eliminar Pinchos</button>
 			
-			<button TYPE="submit" name="accion" VALUE="AsignarPinchos" class="btn btn-block">Asignar Pinchos</button>
-			
-			<button TYPE="submit" name="accion" VALUE="DesasignarPinchos" class="btn btn-block">Desasignar Pinchos</button>
+			<button TYPE="submit" name="accion" VALUE="GestionarSistema" class="btn btn-block">Gestionar Sistema</button>
+
+			<button TYPE="submit" name="accion" VALUE="GestionarPinchos" class="btn btn-block">Gestionar Pinchos</button>
+			<button TYPE="submit" name="accion" VALUE="GestionarAsignaciones" class="btn btn-block">Gestionar Asignaciones</button>
+						
+			<button TYPE="submit" name="accion" VALUE="GesJurPro" class="btn btn-block">Gestionar Jurado Profesional</button>
 		
 		</div>   		
 
