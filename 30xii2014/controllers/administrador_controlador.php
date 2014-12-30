@@ -320,6 +320,7 @@ if($accion=='GesJurPro'){
 	}
 }
 /*--------------------------------------------------------*/
+<<<<<<< HEAD
 /*-------------------------------------------------------*/
 /*RELLENAR NUEVO JURADO PROFESIONAL**********************/
 if($accion == "NuevoJurPro"){
@@ -391,8 +392,69 @@ if($accion == "GestionarAsignaciones" || $accion=="VolverGesAsigna"){
 
 }
 
+=======
+>>>>>>> origin/master
+/*-------------------------------------------------------*/
+/*RELLENAR NUEVO JURADO PROFESIONAL**********************/
+if($accion == "NuevoJurPro"){
+
+	header ('Location:'.raiz.'views/RellenarDatosJurPro.php');
+
+}
+/*--------------------------------------------------------*/
+/*-------------------------------------------------------*/
+/*ENVIAR FORMULARIO NUEVO JURADO PROFESIONAL*************/
+ if($accion == "EnviarFormularioJurPro"){		
+
+	$db_model->enviarFormularioJurPro();
+	//Validamos la consulta SQL
+	if($_SESSION['campos_incompletos']){
+				header ('Location:'.raiz.'views/error/error_campos_incompletos_jurPro.php'); 
+	}else if ($_SESSION['errorSQL']){
+		header ('Location:'.raiz.'views/error/error_inserta_formulario.php');
+		}
+		else{		
+			$db_model->gesJurPro();		
+			header ('Location:'.raiz.'views/exito/exito_insercion_jurPro.php');
+	}	
+	
+} 
+
+/*--------------------------------------------------------*/
+/*MOSTRAR FORMULARIO EDICION JURADO PROFESIONAL **********/
+
+if(isset($_REQUEST['editarJurPro'])){
+	
+	$nombreJurPro=$_REQUEST['editarJurPro'];
+	$_SESSION['nombreJurPro']=$nombreJurPro;
+	header ('Location:'.raiz.'views/EditarDatosJurPro.php');
+
+}
+
+/*--------------------------------------------------------*/
+/*-------------------------------------------------------*/
+/*EDITAR DATOS JURADO PROFESIONAL************************/
+if ($accion == "EditarFormularioJurPro")
+{
+		$db_model->editarFormularioJurPro();
+		if($_SESSION['campos_incompletos']){
+				header ('Location:'.raiz.'views/error/error_campos_incompletos_editar_jurPro.php');
+		}else{
+			$db_model->gesJurPro();	
+			header ('Location:'.raiz.'views/exito/exito_edicion_jurPro.php');
+		}			
+} 
+
+/*--------------------------------------------------------*/
+/*-------------------------------------------------------*/
+/*VOLVER A GESTIONAR JURADO PROFESIONAL******************/
+if($accion == "VolverGesJurPro"){
+	header ('Location:'.raiz.'views/GesJurPro.php');
+}
+
 /*-------------------------------------------------------*/
 /*-------------------------------------------------------*/
+
 //Llamada a la vista
 require_once(__DIR__."/../views/IU_inicio_administrador.php");
   

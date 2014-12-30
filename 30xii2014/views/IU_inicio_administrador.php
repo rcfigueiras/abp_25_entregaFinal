@@ -49,11 +49,18 @@ if (isset($_REQUEST['login'])) {
 			
 			<button TYPE="submit" name="accion" VALUE="EliminarPinchos" class="btn btn-block">Eliminar Pinchos</button>
 			
+<<<<<<< HEAD
 			<button TYPE="submit" name="accion" VALUE="GestionarSistema" class="btn btn-block">Gestionar Sistema</button>
 
 			<button TYPE="submit" name="accion" VALUE="GestionarPinchos" class="btn btn-block">Gestionar Pinchos</button>
 			<button TYPE="submit" name="accion" VALUE="GestionarAsignaciones" class="btn btn-block">Gestionar Asignaciones</button>
 						
+=======
+			<button TYPE="submit" name="accion" VALUE="AsignarPinchos" class="btn btn-block">Asignar Pinchos</button>
+			
+			<button TYPE="submit" name="accion" VALUE="DesasignarPinchos" class="btn btn-block">Desasignar Pinchos</button>
+			
+>>>>>>> origin/master
 			<button TYPE="submit" name="accion" VALUE="GesJurPro" class="btn btn-block">Gestionar Jurado Profesional</button>
 		
 		</div>   		
