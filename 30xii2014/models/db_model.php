@@ -1135,5 +1135,112 @@ class db_model {
 	}
 
   }
+  
+  	/*----------------------------------------------------------*/
+	/*---------------------------------------------------------*/
+	/***************GESTIONAR JURADO PROFESIONAL***************/
+	public function gesJurPro(){
+		
+		$login=$_SESSION['login'];
+		$sql="SELECT * FROM jurado_profesional";
+		$profesionales=array();
+		$consulta = mysql_query($sql);
+		
+		if (mysql_affected_rows() > 0)
+		{
+			$_SESSION['errorSQL'] = 0;
+			
+		}
+		else{
+			$_SESSION['errorSQL']=1;
+		}
+		
+		while ($filas = mysql_fetch_assoc($consulta)){
+			$profesionales[]=$filas;
+		} 		
+		$_SESSION['profesionales']=$profesionales;
+	}
+	
+	/*----------------------------------------------------------*/
+	/*---------------------------------------------------------*/
+	/***********ENVIAR FORMULARIO JURADO PROFESIONAL***********/
+	public function enviarFormularioJurPro(){	
+		$_SESSION['campos_incompletos']=0;
+		$_SESSION['errorSQL'] = 1;
+		
+		//Recuperamos las variables del formulario
+		$nombreJurPro=$_REQUEST['nombreJurPro'];
+		$passJurPro=$_REQUEST['passJurPro'];
+		$profJurPro=$_REQUEST['profJurPro'];
+		$cachJurPro=$_REQUEST['cachJurPro'];
+
+		if($nombreJurPro == NULL || $passJurPro == NULL
+			){
+			$_SESSION['campos_incompletos']=1;
+		}
+		else{
+			$sql="INSERT INTO jurado_profesional(ID_administrador
+									,nombre_jurPro
+									,contrasenha_jurPro
+									,profesion
+									,cache
+											) 
+							VALUES ('1'
+									,'".$nombreJurPro."'
+									,'".$passJurPro."'
+									,'".$profJurPro."'
+									,'".$cachJurPro."'
+									)";
+			mysql_query($sql);
+		}
+		//Validamos que la inserción se ha realizado correctamente
+		if (mysql_affected_rows() > 0)
+		{
+			$_SESSION['errorSQL'] = 0;
+		}
+		else{
+			$_SESSION['errorSQL'] = 1;
+		}
+
+	}	
+	
+	/*----------------------------------------------------------*/
+	/*---------------------------------------------------------*/
+	/********Editar Formulario Jurado Profesional**************/
+	public function editarFormularioJurPro(){	
+		$_SESSION['campos_incompletos']=0;
+		$_SESSION['errorSQL'] = 1;
+		
+		//Recuperamos las variables del formulario
+		$nombreJurPro=$_REQUEST['nombreJurPro'];
+		$passJurPro=$_REQUEST['passJurPro'];
+		$profJurPro=$_REQUEST['profJurPro'];
+		$cachJurPro=$_REQUEST['cachJurPro'];
+		
+		if($nombreJurPro == NULL || $passJurPro == NULL
+			){
+			$_SESSION['campos_incompletos']=1;
+		}
+		else{
+			$sql="UPDATE jurado_profesional  
+				SET nombre_jurPro ='".$nombreJurPro."'
+				,contrasenha_jurPro ='".$passJurPro."'
+				,profesion ='".$profJurPro."'
+				,cache ='".$cachJurPro."'
+				WHERE
+				nombre_jurPro ='".$_SESSION['nombreJurPro']."'";
+			mysql_query($sql);
+		}
+		//Validamos que la inserción se ha realizado correctamente
+		if (mysql_affected_rows() > 0)
+		{
+			$_SESSION['errorSQL'] = 0;
+		}
+		else{
+			$_SESSION['errorSQL'] = 1;
+		}
+
+	}
+  
 }
 ?>

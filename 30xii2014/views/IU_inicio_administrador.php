@@ -52,6 +52,8 @@ if (isset($_REQUEST['login'])) {
 			<button TYPE="submit" name="accion" VALUE="AsignarPinchos" class="btn btn-block">Asignar Pinchos</button>
 			
 			<button TYPE="submit" name="accion" VALUE="DesasignarPinchos" class="btn btn-block">Desasignar Pinchos</button>
+			
+			<button TYPE="submit" name="accion" VALUE="GesJurPro" class="btn btn-block">Gestionar Jurado Profesional</button>
 		
 		</div>   		
 
