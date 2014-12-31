@@ -24,13 +24,12 @@ $db_model=new db_model();
 		<?PHP include __DIR__."/IU_cabecera.php";?>
 	</div>
 	
-	
     <div class="col-md-3"></div><!-- Desplazamiento hacia la derecha del cuerpo de la página -->
     <div class="col-md-5"><!-- Ancho del cuerpo de la página -->
 
 	<form action="<?PHP echo raiz;?>controllers/administrador_controlador.php" method="get"> 
 	
-	 <div class="panel panel-default">
+	<div class="panel panel-default">
 	<div class="panel-heading">
 	  <h2 class="panel-title">
 	            <span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span> 

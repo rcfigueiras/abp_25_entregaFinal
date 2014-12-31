@@ -387,13 +387,15 @@ class db_model {
 /*****************ALTA PINCHO*******************************/
 	public function altaPincho(){
 		$nombre_pin=$_REQUEST['nombrePin'];
-		
+		$_SESSION['exito_validar']=0;
+
 		$sql="UPDATE pincho SET pincho_validado='1' WHERE nombre_pincho='".$nombre_pin."'";
 		$resultado=mysql_query($sql);
 		
 		if (mysql_affected_rows() > 0)
 		{
 			$_SESSION['errorSQL'] = 0;
+			$_SESSION['exito_validar']=1;
 			
 		}
 		else{
@@ -440,6 +442,7 @@ class db_model {
 /*****************ELIMINA ESTE PINCHOS**********************/
 	public function eliminaPincho(){
 		
+		$_SESSION['exito_eliminar']=0;
 		$nombre_pin=$_REQUEST['nombrePin'];
 		
 		$sql="SELECT E.id_estab
@@ -458,6 +461,8 @@ class db_model {
 		if (mysql_affected_rows() > 0)
 		{
 			$_SESSION['errorSQL'] = 0;
+			$_SESSION['exito_eliminar']=1;
+
 			
 		}
 		else{

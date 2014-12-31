@@ -27,7 +27,12 @@ session_start();
 
 
 	<div class="alert alert-info">Resultados de la b&uacute;squeda</div>
-	
+	<div class="row">
+		  <div class="col-md-12">
+		    <button TYPE="submit" name="accion" VALUE="volver" class="btn btn-block">
+			<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Volver</button>
+		  </div>
+		</div>	
 	<?PHP
 	/*
 	Si venimos de mostrar más info no actualizamos el valor 
@@ -49,9 +54,9 @@ session_start();
 
 	  <div class="col-sm-8 col-md-4">
 	    <div class="thumbnail">
-	      <img src="<?PHP echo $valor['foto']?>" alt="No hay imagen disponible">
+	      <img src="<?PHP echo $valor['foto']?>" alt="No hay imagen disponible" width="250">
 	      <div class="caption">
-		<h3><?PHP echo $valor['nombre_pincho']?></h3>
+			<h3><?PHP echo $valor['nombre_pincho']?></h3>
 		
 		    <p>
 		    <label for="name" class="badge"> Tipo</label>
@@ -63,7 +68,11 @@ session_start();
 		    <label for="name"> <?PHP echo $valor['nombre_estab']?> </label>
 		    </p>
 		    
-		<p><button TYPE="submit" NAME="masInfoPincho" VALUE="<?PHP echo $valor['nombre_pincho']?>" class="btn btn-primary"><?PHP echo 'Mas info'?></button></p>
+		<p>
+			<button TYPE="submit" NAME="masInfoPincho" VALUE="<?PHP echo $valor['nombre_pincho']?>" class="btn btn-primary">
+				<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> M&aacute;s informaci&oacute;n
+			</button>
+		</p>
 	      </div>
 	    </div>
 	  </div>
@@ -73,11 +82,7 @@ session_start();
 		
 		?>						
 		</div><!-- Fin del thumbnail -->	
-		<div class="row">
-		  <div class="col-md-12">
-		    <button TYPE="submit" name="accion" VALUE="volver" class="btn btn-block">Volver</button>
-		  </div>
-		</div>	
+		
 	</div><!-- Fin del ancho del cuerpo de la página -->
 	 
 	<form/>   

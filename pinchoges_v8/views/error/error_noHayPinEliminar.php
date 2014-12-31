@@ -17,6 +17,19 @@ if (isset($_REQUEST['login'])) {
 </head>
 
 <body>
+
+		<?PHP 
+	if(isset($_SESSION['exito_eliminar']))	{
+		if($_SESSION['exito_eliminar'] == 1)
+		{ 
+		?>			
+		<div class="alert alert-success">El pincho <?PHP echo $_SESSION['nombrePin'];?> ha sido eliminado</div>
+		
+		<?PHP
+		}	
+	}
+	$_SESSION['exito_eliminar']=0;
+	?>
 	<div class="alert alert-warning">No hay pinchos disponibles para eliminar</div>
 	
 	

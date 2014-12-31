@@ -18,44 +18,66 @@ $db_model=new db_model();
 		<?PHP include("IU_cabecera.php"); ?>
 	</div>
 
+    <div class="col-md-3"></div><!-- Desplazamiento hacia la derecha del cuerpo de la página -->
+    <div class="col-md-6"><!-- Ancho del cuerpo de la página -->
+
     <form action="<?PHP echo raiz;?>controllers/administrador_controlador.php" method="get"> 
+<div class="panel panel-default">
+	<div class="panel-heading">
+	  <h2 class="panel-title">
+				<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+				 Informaci&oacute;n completa del pincho que desea validar
+	  </h2></div>
+	<div class="alert alert-warning">Pulse validar para completar la acci&oacute;n</div>
+	<div>
+	<button TYPE="submit" name="accion" VALUE="VolverListaValidar" class="btn btn-block">         
+	  <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+	  Volver al listado
+	</button>
+	</div>
+	  <div class="panel-body">
 	<?PHP
 		foreach  ($_SESSION['pinchos'] as $valor){
 	
 			if($valor['nombre_pincho'] == $_SESSION['nombrePin']){
 				?>
+					
 			<div class="form-group">
-				<label for="name" class="label label-default"> Nombre del pincho: </label>
-				<input TYPE="text" NAME="nombrePin" VALUE="<?PHP echo $valor['nombre_pincho']?>" class="btn btn-default" readonly>
-			</div>
-			<div class="form-group">
-				<label for="name" class="label label-default"> Foto: </label>
-				<div class="form-group">
-					<img src="<?PHP echo $valor['foto']?>" alt="no hay imagen disponible" class="img-thumbnail" width='250'>
-				</div>					
-			</div>
-			<div class="form-group">
-					<label for="name" class="label label-default">Tipo </label>
-					<input TYPE="text" NAME="tipoPin" VALUE="<?PHP echo $valor['tipo']?>" class="btn btn-default" readonly>
-				</div>
-			<div class="form-group">
-					<label for="name" class="label label-default"> Precio: </label>
-					<input TYPE="text" NAME="precioPin" VALUE="<?PHP echo $valor['precio']?>" class="btn btn-default" readonly>
-				</div>
-			
-			<div class="form-group">
-					<label for="name" class="label label-default"> Horario disponible: </label>
-					<input TYPE="text" NAME="horaPin" VALUE="<?PHP echo $valor['horario']?>" class="btn btn-default" readonly>
-				</div>						
-			
+		  <img src="<?PHP echo $valor['foto']?>" alt="No hay imagen disponible" class="img-thumbnail" width='400'>
+		</div>
+
+		<div class="form-group" name="nombre_pincho">
+		  <label class="label label-info">Nombre</label>
+		  <h4 NAME="nombrePin" VALUE="<?PHP echo $valor['nombre_pincho']?>"><?PHP echo $valor['nombre_pincho']?></h4>			
+		  <input  TYPE="hidden" NAME="nombrePin" VALUE="<?PHP echo $valor['nombre_pincho']?>" class="btn btn-default" readonly ></input>
+		</div>
+
+		<div class="form-group">
+		  <label class="label label-info">Tipo</label>
+		  <h4><?PHP echo $valor['tipo']?></h4>
+		</div>
+		
+		<div class="form-group">
+		  <label class="label label-info">Descripci&oacute;n</label>
+		  <h4><?PHP echo $valor['descripcion']?></h4>
+		</div>
+		
+		<div class="form-group">
+		  <label class="label label-info">Precio</label>
+		  <h4><?PHP echo $valor['precio']?><span class="glyphicon glyphicon-euro" aria-hidden="true"></span></h4>
+		</div>
+		
+		<div class="form-group">
+		  <label class="label label-info">Horario</label>
+		  <h4><?PHP echo $valor['horario']?></h4>
+		</div>
 				<?PHP
 			}
 		}						
 		?>	
 		
 		<div class="btn-group">
-			<button TYPE="submit" name="accion" VALUE="altaPincho" class="btn btn-default">Alta Pincho</button>
-			<button TYPE="submit" name="accion" VALUE="VolverListaValidar" class="btn btn-default">Volver</button>
+			<button TYPE="submit" name="accion" VALUE="altaPincho" class="btn btn-primary">Validar</button>
 		</div>  	
 
 	<form/>

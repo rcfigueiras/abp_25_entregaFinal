@@ -15,6 +15,19 @@ if (isset($_REQUEST['login'])) {
 </head>
 
 <body>
+
+	<?PHP 
+	if(isset($_SESSION['exito_validar']))	{
+		if($_SESSION['exito_validar'] == 1)
+		{ 
+		?>			
+		<div class="alert alert-success">El pincho <?PHP echo $_SESSION['nombrePin'];?> ha sido validado</div>
+		
+		<?PHP
+		}	
+	}
+	$_SESSION['exito_validar'] = 0;
+	?>
 	<div class="alert alert-warning">No hay pinchos disponibles para validar</div>
 	
 	<?PHP include(__DIR__."/../IU_GesPinchos.php"); ?>
