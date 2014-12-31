@@ -1,17 +1,17 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
+-- version 4.3.2
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 05, 2014 at 03:06 PM
--- Server version: 5.5.40
+-- Generation Time: Dec 30, 2014 at 11:55 PM
+-- Server version: 5.5.41
 -- PHP Version: 5.4.35
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 -- Initialize the variable.
-SET @Raiz = "/pinchoges_v5";
+SET @Raiz = "/pinchoges_v6";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -47,7 +47,7 @@ GRANT ALL PRIVILEGES ON  PINCHOGES . * TO  'userpg'@'localhost' WITH GRANT OPTIO
 --
 
 CREATE TABLE `administrador` (
-`ID_administrador` int(10) NOT NULL,
+  `ID_administrador` int(10) NOT NULL,
   `nombre_admin` char(30) NOT NULL,
   `contrasenha_admin` varchar(15) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
@@ -88,7 +88,7 @@ INSERT INTO `asigna_pincho` (`ID_administrador`, `ID_jurPro`, `ID_pincho`) VALUE
 --
 
 CREATE TABLE `codigo_pincho` (
-`ID_codigoPincho` int(10) NOT NULL,
+  `ID_codigoPincho` int(10) NOT NULL,
   `ID_estab` int(10) NOT NULL,
   `ID_pincho` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -112,8 +112,7 @@ CREATE TABLE `comenta` (
 --
 
 CREATE TABLE `establecimiento` (
-
-`ID_estab` int(10) NOT NULL,
+  `ID_estab` int(10) NOT NULL,
   `ID_administrador` int(10) NOT NULL,
   `nombre_estab` char(20) NOT NULL,
   `contrasenha_estab` varchar(15) NOT NULL,
@@ -150,7 +149,7 @@ CREATE TABLE `ingredientes` (
 --
 
 CREATE TABLE `jurado_popular` (
-`ID_juradoPopular` int(10) NOT NULL,
+  `ID_juradoPopular` int(10) NOT NULL,
   `nombre_jurPop` char(30) NOT NULL,
   `contrasenha_jurPop` varchar(15) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
@@ -169,21 +168,22 @@ INSERT INTO `jurado_popular` (`ID_juradoPopular`, `nombre_jurPop`, `contrasenha_
 --
 
 CREATE TABLE `jurado_profesional` (
-`ID_juradoProfesional` int(10) NOT NULL,
+  `ID_juradoProfesional` int(10) NOT NULL,
   `ID_administrador` int(10) NOT NULL,
   `nombre_jurPro` char(30) NOT NULL,
   `contrasenha_jurPro` varchar(15) NOT NULL,
   `profesion` varchar(20) DEFAULT NULL,
-  `cache` float DEFAULT NULL
+  `cache` float DEFAULT NULL,
+  `estado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `jurado_profesional`
 --
 
-INSERT INTO `jurado_profesional` (`ID_juradoProfesional`, `ID_administrador`, `nombre_jurPro`, `contrasenha_jurPro`, `profesion`, `cache`) VALUES
-(1, 1, 'profesional', 'profesional', NULL, NULL),
-(2, 1, 'profesional2', 'profesional2', NULL, NULL);
+INSERT INTO `jurado_profesional` (`ID_juradoProfesional`, `ID_administrador`, `nombre_jurPro`, `contrasenha_jurPro`, `profesion`, `cache`, `estado`) VALUES
+(1, 1, 'profesional', 'profesional', NULL, NULL, 1),
+(2, 1, 'profesional2', 'profesional2', NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -216,7 +216,7 @@ CREATE TABLE `patrocinadores` (
 --
 
 CREATE TABLE `pincho` (
-`ID_pincho` int(10) NOT NULL,
+  `ID_pincho` int(10) NOT NULL,
   `ID_administrador` int(10) NOT NULL,
   `ID_estab` int(10) NOT NULL,
   `nombre_pincho` char(20) NOT NULL,
@@ -233,10 +233,10 @@ CREATE TABLE `pincho` (
 --
 
 INSERT INTO `pincho` (`ID_pincho`, `ID_administrador`, `ID_estab`, `nombre_pincho`, `tipo`, `descripcion`, `precio`, `foto`, `horario`, `pincho_validado`) VALUES
-(121, 1, 8, 'pizza', 'frio', 'pizza cuatro estaciones especial', 3, CONCAT (@Raiz, '/src/imagenes/pizza.jpg'), 'almuerzo', 0),
-(122, 1, 9, 'tosta de jamon', 'frio', 'tosta de jamon con aceite de oliva', 2, CONCAT (@Raiz, '/src/imagenes/tosta.jpg'), 'cena', 0),
-(123, 1, 10, 'bacalao', 'caliente', 'bacalao al pinpin', 3, CONCAT (@Raiz, '/src/imagenes/pizza.jpg'), 'almuerzo/cena', 0),
-(124, 1, 12, 'tempura de verduras', 'caliente', 'tempura de verduras de temporada', 1, CONCAT (@Raiz, '/src/imagenes/tempura.jpg'), 'almuerzo', 0);
+(121, 1, 8, 'pizza', 'frio', 'pizza cuatro estaciones especial', 3, '/pinchoges_v5/src/imagenes/pizza.jpg', 'almuerzo', 0),
+(122, 1, 9, 'tosta de jamon', 'frio', 'tosta de jamon con aceite de oliva', 2, '/pinchoges_v5/src/imagenes/tosta.jpg', 'cena', 0),
+(123, 1, 10, 'bacalao', 'caliente', 'bacalao al pinpin', 3, '/pinchoges_v5/src/imagenes/pizza.jpg', 'almuerzo/cena', 0),
+(124, 1, 12, 'tempura de verduras', 'caliente', 'tempura de verduras de temporada', 1, '/pinchoges_v5/src/imagenes/tempura.jpg', 'almuerzo', 0);
 
 -- --------------------------------------------------------
 
@@ -256,7 +256,7 @@ CREATE TABLE `pinchoges` (
 --
 
 INSERT INTO `pinchoges` (`nombre_consurso`, `ID_administrador`, `bases`, `logotipo`) VALUES
-('Outono Ourense', 1, CONCAT(@Raiz,'/src/docs/bases.pdf'), CONCAT(@Raiz,'/src/imagenes/logo.jpg'));
+('Outono Ourense', 1, '/pinchoges_v5/src/docs/bases.pdf', '/pinchoges_v5/src/imagenes/logo.jpg');
 
 -- --------------------------------------------------------
 
@@ -279,7 +279,7 @@ CREATE TABLE `plazos` (
 
 CREATE TABLE `valoracion` (
   `ID_pincho` int(10) NOT NULL,
-`ID_valoracion` int(10) NOT NULL,
+  `ID_valoracion` int(10) NOT NULL,
   `ID_juradoPro` int(10) DEFAULT NULL,
   `ID_juradoPop` int(10) DEFAULT NULL,
   `ID_administrador` int(10) NOT NULL,
@@ -296,85 +296,85 @@ CREATE TABLE `valoracion` (
 -- Indexes for table `administrador`
 --
 ALTER TABLE `administrador`
- ADD PRIMARY KEY (`ID_administrador`), ADD UNIQUE KEY `nombre_admin` (`nombre_admin`);
+  ADD PRIMARY KEY (`ID_administrador`), ADD UNIQUE KEY `nombre_admin` (`nombre_admin`);
 
 --
 -- Indexes for table `asigna_pincho`
 --
 ALTER TABLE `asigna_pincho`
- ADD PRIMARY KEY (`ID_administrador`,`ID_jurPro`,`ID_pincho`), ADD KEY `ID_jurPro` (`ID_jurPro`), ADD KEY `ID_pincho` (`ID_pincho`);
+  ADD PRIMARY KEY (`ID_administrador`,`ID_jurPro`,`ID_pincho`), ADD KEY `ID_jurPro` (`ID_jurPro`), ADD KEY `ID_pincho` (`ID_pincho`);
 
 --
 -- Indexes for table `codigo_pincho`
 --
 ALTER TABLE `codigo_pincho`
- ADD PRIMARY KEY (`ID_codigoPincho`,`ID_estab`,`ID_pincho`), ADD KEY `ID_estab` (`ID_estab`), ADD KEY `ID_pincho` (`ID_pincho`);
+  ADD PRIMARY KEY (`ID_codigoPincho`,`ID_estab`,`ID_pincho`), ADD KEY `ID_estab` (`ID_estab`), ADD KEY `ID_pincho` (`ID_pincho`);
 
 --
 -- Indexes for table `comenta`
 --
 ALTER TABLE `comenta`
- ADD PRIMARY KEY (`ID_jurPop`,`ID_pincho`), ADD KEY `ID_pincho` (`ID_pincho`);
+  ADD PRIMARY KEY (`ID_jurPop`,`ID_pincho`), ADD KEY `ID_pincho` (`ID_pincho`);
 
 --
 -- Indexes for table `establecimiento`
 --
 ALTER TABLE `establecimiento`
- ADD PRIMARY KEY (`ID_estab`), ADD UNIQUE KEY `nombre_estab` (`nombre_estab`), ADD KEY `ID_administrador` (`ID_administrador`);
+  ADD PRIMARY KEY (`ID_estab`), ADD UNIQUE KEY `nombre_estab` (`nombre_estab`), ADD KEY `ID_administrador` (`ID_administrador`);
 
 --
 -- Indexes for table `ingredientes`
 --
 ALTER TABLE `ingredientes`
- ADD PRIMARY KEY (`nombre_ingrediente`,`ID_pincho`), ADD KEY `ID_pincho` (`ID_pincho`);
+  ADD PRIMARY KEY (`nombre_ingrediente`,`ID_pincho`), ADD KEY `ID_pincho` (`ID_pincho`);
 
 --
 -- Indexes for table `jurado_popular`
 --
 ALTER TABLE `jurado_popular`
- ADD PRIMARY KEY (`ID_juradoPopular`), ADD UNIQUE KEY `nombre_jurPop` (`nombre_jurPop`);
+  ADD PRIMARY KEY (`ID_juradoPopular`), ADD UNIQUE KEY `nombre_jurPop` (`nombre_jurPop`);
 
 --
 -- Indexes for table `jurado_profesional`
 --
 ALTER TABLE `jurado_profesional`
- ADD PRIMARY KEY (`ID_juradoProfesional`), ADD UNIQUE KEY `nombre_jurPro` (`nombre_jurPro`), ADD KEY `ID_administrador` (`ID_administrador`);
+  ADD PRIMARY KEY (`ID_juradoProfesional`), ADD UNIQUE KEY `nombre_jurPro` (`nombre_jurPro`), ADD KEY `ID_administrador` (`ID_administrador`);
 
 --
 -- Indexes for table `mensaje`
 --
 ALTER TABLE `mensaje`
- ADD PRIMARY KEY (`ID_estab`,`cod_mensaje`);
+  ADD PRIMARY KEY (`ID_estab`,`cod_mensaje`);
 
 --
 -- Indexes for table `patrocinadores`
 --
 ALTER TABLE `patrocinadores`
- ADD PRIMARY KEY (`nombre_patrocinador`,`nombre_concurso`), ADD KEY `nombre_concurso` (`nombre_concurso`);
+  ADD PRIMARY KEY (`nombre_patrocinador`,`nombre_concurso`), ADD KEY `nombre_concurso` (`nombre_concurso`);
 
 --
 -- Indexes for table `pincho`
 --
 ALTER TABLE `pincho`
- ADD PRIMARY KEY (`ID_pincho`), ADD UNIQUE KEY `nombre_pincho` (`nombre_pincho`), ADD KEY `ID_administrador` (`ID_administrador`), ADD KEY `ID_estab` (`ID_estab`);
+  ADD PRIMARY KEY (`ID_pincho`), ADD UNIQUE KEY `nombre_pincho` (`nombre_pincho`), ADD KEY `ID_administrador` (`ID_administrador`), ADD KEY `ID_estab` (`ID_estab`);
 
 --
 -- Indexes for table `pinchoges`
 --
 ALTER TABLE `pinchoges`
- ADD PRIMARY KEY (`nombre_consurso`), ADD KEY `ID_administrador` (`ID_administrador`);
+  ADD PRIMARY KEY (`nombre_consurso`), ADD KEY `ID_administrador` (`ID_administrador`);
 
 --
 -- Indexes for table `plazos`
 --
 ALTER TABLE `plazos`
- ADD PRIMARY KEY (`nombre_plazo`,`nombre_concurso`), ADD KEY `nombre_concurso` (`nombre_concurso`);
+  ADD PRIMARY KEY (`nombre_plazo`,`nombre_concurso`), ADD KEY `nombre_concurso` (`nombre_concurso`);
 
 --
 -- Indexes for table `valoracion`
 --
 ALTER TABLE `valoracion`
- ADD PRIMARY KEY (`ID_pincho`,`ID_valoracion`), ADD KEY `ID_juradoPro` (`ID_juradoPro`), ADD KEY `ID_juradoPop` (`ID_juradoPop`), ADD KEY `ID_administrador` (`ID_administrador`), ADD KEY `ID_valoracion` (`ID_valoracion`);
+  ADD PRIMARY KEY (`ID_pincho`,`ID_valoracion`), ADD KEY `ID_juradoPro` (`ID_juradoPro`), ADD KEY `ID_juradoPop` (`ID_juradoPop`), ADD KEY `ID_administrador` (`ID_administrador`), ADD KEY `ID_valoracion` (`ID_valoracion`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -384,37 +384,37 @@ ALTER TABLE `valoracion`
 -- AUTO_INCREMENT for table `administrador`
 --
 ALTER TABLE `administrador`
-MODIFY `ID_administrador` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `ID_administrador` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `codigo_pincho`
 --
 ALTER TABLE `codigo_pincho`
-MODIFY `ID_codigoPincho` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_codigoPincho` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `establecimiento`
 --
 ALTER TABLE `establecimiento`
-MODIFY `ID_estab` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+  MODIFY `ID_estab` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `jurado_popular`
 --
 ALTER TABLE `jurado_popular`
-MODIFY `ID_juradoPopular` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `ID_juradoPopular` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `jurado_profesional`
 --
 ALTER TABLE `jurado_profesional`
-MODIFY `ID_juradoProfesional` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `ID_juradoProfesional` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `pincho`
 --
 ALTER TABLE `pincho`
-MODIFY `ID_pincho` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=125;
+  MODIFY `ID_pincho` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=125;
 --
 -- AUTO_INCREMENT for table `valoracion`
 --
 ALTER TABLE `valoracion`
-MODIFY `ID_valoracion` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_valoracion` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
