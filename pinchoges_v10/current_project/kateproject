@@ -1,0 +1,9 @@
+{
+  "name": "Kate"
+, "files": [ { 
+	"directory": "pinchoges_v8", 
+	"filters": [
+		"*.php"
+		, "*.sql"
+		, "recursive": 1 } ]
+}
